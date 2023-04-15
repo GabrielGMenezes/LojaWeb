@@ -1,5 +1,6 @@
 package br.com.lojavirtual.lojinha.controller;
 
+import br.com.lojavirtual.lojinha.model.Cliente;
 import br.com.lojavirtual.lojinha.service.ClienteService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -17,8 +18,7 @@ public class ClienteController {
     private ClienteService clienteService;
 
     @GetMapping
-    public List<ClienteDTO> obterListaClientes() {
-       // return clienteService.obterListaClientes();
-        return List.of(new ClienteDTO("Hello World"));
+    public List<Cliente> obterListaClientes() {  // todo Eu sei que não posso passar uma entidade "Cliente" , deveria ser um DTO
+        return clienteService.obterListaClientes();
     }
 }

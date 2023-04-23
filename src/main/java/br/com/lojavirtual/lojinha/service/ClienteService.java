@@ -12,11 +12,11 @@ public class ClienteService {
 
     private ClienteRepository clienteRepository;
 
-    public ClienteService(){
-        clienteRepository = new ClienteRepository(); // todo Isso está muito errado, não devo utilizar NEW quando estiver trabalhando com springBoot
+    public ClienteService(ClienteRepository clienteRepository){
+        this.clienteRepository = clienteRepository;
     }
 
     public List<Cliente> obterListaClientes() { // todo Eu sei que não posso passar uma entidade "Cliente" , deveria ser um DTO
-        return clienteRepository.obterListaClientes();
+        return clienteRepository.findAll();
     }
 }

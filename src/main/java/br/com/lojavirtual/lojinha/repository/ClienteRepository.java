@@ -1,14 +1,12 @@
 package br.com.lojavirtual.lojinha.repository;
 
 import br.com.lojavirtual.lojinha.model.Cliente;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
 
 import java.math.BigDecimal;
 import java.util.List;
+@Repository
+public interface ClienteRepository extends JpaRepository<Cliente, Long> {
 
-public class ClienteRepository {
-    public List<Cliente> obterListaClientes() {
-        Cliente cliente = new Cliente("nomeCliente", "endereço", "email", "credit", "frete", BigDecimal.valueOf(100), null);
-
-        return List.of(cliente);
-    }
 }

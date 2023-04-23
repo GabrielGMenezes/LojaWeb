@@ -1,29 +1,44 @@
 package br.com.lojavirtual.lojinha.model;
 
-import java.math.BigDecimal;
 
-public class Cliente extends Usuario  {
-    private String nomeCliente;
+import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+
+
+import java.math.BigDecimal;
+import java.time.LocalDateTime;
+import java.util.List;
+
+@AllArgsConstructor
+@NoArgsConstructor
+@Getter
+@Builder
+@Entity
+public class Cliente {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+    private String nome;
     private String endereco;
     private String email;
-    private String infCardCredit;
-    private String infFrete;
+    @Column(name = "card_credit")
+    private String cardCredit;
+    private String frete;
+    @Column(name = "saldo_conta")
     private BigDecimal saldoConta;
-
-    private CarrinhoCompras carrinho;
-
-    public Cliente(String nomeCliente, String endereco, String email, String infCardCredit, String infFrete, BigDecimal saldoConta, CarrinhoCompras carrinho){
-        this.nomeCliente = nomeCliente;
-        this.endereco = endereco;
-        this.email = email;
-        this.infCardCredit = infCardCredit;
-        this.infFrete = infFrete;
-        this.saldoConta = saldoConta;
-        this.carrinho = carrinho;
-    }
+    @OneToMany(mappedBy = "cliente")
+    private List<CarrinhoCompras> carrinhoCompras;
+    private String senha;
+    @Column(name = "status_login")
+    private String statusLogin;
+    @Column(name = "data_registro")
+    private LocalDateTime dataRegistro;
 
     public void registrar() {
-
     }
 
     public boolean login() {
@@ -32,38 +47,4 @@ public class Cliente extends Usuario  {
 
     public void atualizarPerfil() {
     }
-
-    @Override
-    public boolean verificarLogin() {
-        return false;
-    }
-
-    public String getNomeCliente() { // todo Todos esses getters são desnecessarios e irei removelos em breve
-        return nomeCliente;
-    }
-
-    public String getEndereco() {
-        return endereco;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public String getInfCardCredit() {
-        return infCardCredit;
-    }
-
-    public String getInfFrete() {
-        return infFrete;
-    }
-
-    public BigDecimal getSaldoConta() {
-        return saldoConta;
-    }
-
-    public CarrinhoCompras getCarrinho() {
-        return carrinho;
-    }
-    
 }

@@ -19,4 +19,8 @@ public class ClienteService {
     public List<Cliente> obterListaClientes() { // todo Eu sei que não posso passar uma entidade "Cliente" , deveria ser um DTO
         return clienteRepository.findAll();
     }
+
+    public Cliente obterCliente(Long id) { // todo Eu sei que não posso passar uma entidade "Cliente" , deveria ser um DTO
+        return clienteRepository.findById(id).orElse(null);
+    }
 }

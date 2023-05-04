@@ -3,6 +3,7 @@ package br.com.lojavirtual.lojinha.controller;
 import br.com.lojavirtual.lojinha.model.Cliente;
 import br.com.lojavirtual.lojinha.service.ClienteService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -25,6 +26,22 @@ public class ClienteController {
     }
 
     // Criar um endpoint para inserir um novo cliente (Post)
+    @PostMapping
+    @ResponseStatus(HttpStatus.CREATED)
+    public Cliente registrarCliente(@RequestBody Cliente registrarCliente){
+      return  clienteService.registrarCliente(registrarCliente);
+    }
+
     // Criar um endpoint para editar um novo cliente (Put)
+    @PutMapping("/{id}")
+    public Cliente editarCliente (@PathVariable Long id, @RequestBody Cliente cliente){
+        return clienteService.editarCliente(id, cliente);
+    }
+
     // Criar um endpoint para deletar um novo cliente (Delete)
+    @DeleteMapping("/{id}")
+    public void deletarCliente (@PathVariable Long id){
+        clienteService.deletarCliente(id);
+    }
+
 }

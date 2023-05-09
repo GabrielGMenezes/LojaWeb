@@ -34,13 +34,13 @@ public class ClienteController {
 
     // Criar um endpoint para editar um novo cliente (Put)
     @PutMapping("/{id}")
-    public Cliente editarCliente (@PathVariable Long id, @RequestBody Cliente cliente){
+    public Cliente editarCliente (@PathVariable Long id, @RequestBody Cliente cliente) throws Exception {
         return clienteService.editarCliente(id, cliente);
     }
 
     // Criar um endpoint para deletar um novo cliente (Delete)
     @DeleteMapping("/{id}")
-    public void deletarCliente (@PathVariable Long id){
+    public void deletarCliente (@PathVariable Long id) throws Exception {
         clienteService.deletarCliente(id);
     }
 
